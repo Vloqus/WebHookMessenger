@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Webhook Messenger </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c2f33;
+            color: #ffffff;
+        }
+        .container {
+            width: 300px;
+            padding: 20px;
+            background: #23272a;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="text"] {
+            background: #2c2f33;
+            color: #ffffff;
+        }
+        button {
+            background: #7289da;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #5a73c9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Send to Discord</h1>
+        <input type="text" id="message" placeholder="Enter your message here">
+        <button onclick="sendMessage()">Send</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        const webhookUrl = "https://discord.com/api/webhooks/1306658201738940416/VOwx4xyGn3FXvfki8OPQivRjvM0n-6gCrx_MbH_mNhu72xvQpZYI6Ycep7IASpfBQWSg"; // Replace this with your Discord Webhook URL
+
+        async function sendMessage() {
+            const messageBox = document.getElementById('message');
+            const status = document.getElementById('status');
+            const message = messageBox.value;
+
+            if (!message.trim()) {
+                status.textContent = "Message cannot be empty.";
+                status.style.color = "red";
+                return;
+            }
+
+            status.textContent = "Sending...";
+            status.style.color = "#ffffff";
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ content: message }),
+                });
+
+                if (response.ok) {
+                    status.textContent = "Message sent successfully!";
+                    status.style.color = "green";
+                    messageBox.value = ""; // Clear the textbox
+                } else {
+                    throw new Error(`Error: ${response.status}`);
+                }
+            } catch (error) {
+                status.textContent = `Failed to send: ${error.message}`;
+                status.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
