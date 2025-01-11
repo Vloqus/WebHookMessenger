@@ -15,33 +15,41 @@
             height: 100vh;
             background-color: #36393f;
             color: #ffffff;
+            box-sizing: border-box;
         }
         .container {
             width: 500px;
+            max-width: 90%;
             padding: 30px;
             background: #2f3136;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
         h1 {
             font-size: 28px;
-            margin-bottom: 15px;
+            margin: 0;
             color: #ffffff;
         }
-        input[type="text"], button {
+        input[type="text"] {
             width: 100%;
             padding: 15px;
-            margin: 15px 0;
             border: none;
             border-radius: 10px;
             font-size: 18px;
-        }
-        input[type="text"] {
             background: #40444b;
             color: #ffffff;
+            box-sizing: border-box;
         }
         button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
             background: #5865f2;
             color: #ffffff;
             font-weight: bold;
@@ -52,11 +60,11 @@
             background: #4752c4;
         }
         #status {
-            margin-top: 10px;
+            margin: 0;
             font-size: 16px;
         }
         .footer {
-            margin-top: 20px;
+            margin-top: 10px;
             font-size: 14px;
             color: #b9bbbe;
         }
@@ -66,10 +74,10 @@
     <div class="container">
         <h1>💬 Discord Message Sender</h1>
         <input type="text" id="message" placeholder="Type your message here...">
-        <button onclick="sendMessage()">Send to Discord Ya Metnak</button>
+        <button onclick="sendMessage()">🚀 Send to Discord</button>
         <p id="status"></p>
         <div class="footer">
-            <p>Channel your hatred for elsisi carefully.</p>
+            <p>✨ Channel your inner meme lord responsibly.</p>
         </div>
     </div>
 
@@ -82,7 +90,7 @@
             const message = messageBox.value;
 
             if (!message.trim()) {
-                status.textContent = "bruh, type something first.";
+                status.textContent = "Bruh, type something first.";
                 status.style.color = "red";
                 return;
             }
