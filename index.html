@@ -6,68 +6,70 @@
     <title>Discord Webhook Messenger</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Whitney", Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #2c2f33;
+            background-color: #36393f;
             color: #ffffff;
         }
         .container {
-            width: 350px;
-            padding: 25px;
-            background: #23272a;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 500px;
+            padding: 30px;
+            background: #2f3136;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             text-align: center;
         }
         h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #ffffff;
         }
         input[type="text"], button {
             width: 100%;
-            padding: 12px;
-            margin: 12px 0;
+            padding: 15px;
+            margin: 15px 0;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 18px;
         }
         input[type="text"] {
-            background: #2c2f33;
+            background: #40444b;
             color: #ffffff;
         }
         button {
-            background: #7289da;
+            background: #5865f2;
             color: #ffffff;
+            font-weight: bold;
             cursor: pointer;
             transition: background 0.3s ease;
         }
         button:hover {
-            background: #5a73c9;
+            background: #4752c4;
         }
         #status {
             margin-top: 10px;
-            font-size: 14px;
+            font-size: 16px;
         }
         .footer {
-            margin-top: 15px;
-            font-size: 12px;
-            color: #888888;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #b9bbbe;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Send Your Funniest Message</h1>
-        <input type="text" id="message" placeholder="Type your masterpiece here...">
-        <button onclick="sendMessage()">Send</button>
+        <h1>💬 Discord Message Sender</h1>
+        <input type="text" id="message" placeholder="Type your message here...">
+        <button onclick="sendMessage()">Send to Discord Ya Metnak</button>
         <p id="status"></p>
         <div class="footer">
-            <p>Remember: Discord bots are not therapists (but they do listen).</p>
+            <p>Channel your hatred for elsisi carefully.</p>
         </div>
     </div>
 
@@ -80,13 +82,13 @@
             const message = messageBox.value;
 
             if (!message.trim()) {
-                status.textContent = "Bruh, type something first.";
+                status.textContent = "bruh, type something first.";
                 status.style.color = "red";
                 return;
             }
 
             const formattedMessage = `\`\`\`${message}\`\`\``; // Wrap message in backticks
-            status.textContent = "Sending your golden words...";
+            status.textContent = "Sending your wisdom...";
             status.style.color = "#ffffff";
 
             try {
@@ -97,14 +99,14 @@
                 });
 
                 if (response.ok) {
-                    status.textContent = "Message sent! Discord is blessed by your wisdom.";
+                    status.textContent = "✅ Message sent! Your genius is immortalized.";
                     status.style.color = "green";
                     messageBox.value = ""; // Clear the textbox
                 } else {
                     throw new Error(`Error: ${response.status}`);
                 }
             } catch (error) {
-                status.textContent = `Oops! Failed to send: ${error.message}`;
+                status.textContent = `❌ Failed to send: ${error.message}`;
                 status.style.color = "red";
             }
         }
